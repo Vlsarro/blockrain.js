@@ -1,11 +1,11 @@
 var gulp = require('gulp'),
-fs = require('fs'),
-clean = require("gulp-clean"),
-uglify = require("gulp-uglify"),
-concat = require("gulp-concat"),
-header = require("gulp-header"),
-zip = require("gulp-zip"),
-runSequence = require('run-sequence');
+    fs = require('fs'),
+    clean = require("gulp-clean"),
+    uglify = require("gulp-uglify"),
+    concat = require("gulp-concat"),
+    header = require("gulp-header"),
+    zip = require("gulp-zip"),
+    runSequence = require('run-sequence');
  
 var getVersion = function () {
     info = require("./package.json");
@@ -17,7 +17,8 @@ var getCopyright = function () {
 
 gulp.task('js', function () {
     // Concatenate and Minify JS
-    return gulp.src(['./src/blockrain.jquery.libs.js', './src/blockrain.jquery.src.js', './src/blockrain.jquery.themes.js'])
+    return gulp.src([require.resolve('jquery'), './src/blockrain.jquery.libs.js', './src/blockrain.jquery.src.js',
+        './src/blockrain.jquery.themes.js'])
     .pipe(concat('blockrain.jquery.js'))
     .pipe(header(getCopyright(), {version: getVersion()}))
     .pipe(gulp.dest('./dist'))
